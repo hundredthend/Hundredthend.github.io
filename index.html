@@ -3,54 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baker Dynamics</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Bakerdynamics | Innovation & Fabrication</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom config for brand colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
 
-    <header>
-        <nav>
-            <div class="brand">
-                <img src="logo.png" alt="Baker Dynamics Logo" class="logo-img">
-                <span class="company-name">Baker Dynamics</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="printforge.html">Printforge Dynamics</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero">
-            <h1>Welcome to Baker Dynamics</h1>
-            <p>Innovative solutions and precision engineering.</p>
-        </section>
-
-        <section class="container">
-            <h2>Our Divisions</h2>
-            <div class="card-grid">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center cursor-pointer" onclick="navigate('home')">
+                    <!-- Logo Icon -->
+                    <img src="Logo.png" alt="Bakerdynamics Logo" class="h-10 w-auto mr-3">
+                    <span class="font-bold text-2xl tracking-tight text-slate-900">Baker<span class="text-brand-600">dynamics</span></span>
+                </div>
                 
-                <div class="card">
-                    <h3>Printforge Dynamics</h3>
-                    <p>High-quality, custom 3D printed models, parts, and prototypes. Browse our catalog of ready-to-ship items or contact us for custom fabrication.</p>
-                    <br>
-                    <a href="printforge.html" class="button">Shop 3D Prints</a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="navigate('home')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors" id="nav-home">Home</button>
+                    <button onclick="navigate('printforge')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors flex items-center" id="nav-printforge">
+                        <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                        </svg>
+                        PrintForge
+                    </button>
+                    <button class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg font-medium transition-all shadow-md shadow-brand-500/30">Contact Us</button>
                 </div>
 
-                <div class="card">
-                    <h3>Consulting & Design</h3>
-                    <p>Professional CAD design and project consultation to bring your ideas from concept to physical reality.</p>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
                 </div>
-
             </div>
-        </section>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <button onclick="navigate('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Home</button>
+                <button onclick="navigate('printforge'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PrintForge</button>
+                <button class="block w-full text-left px-3 py-3 mt-4 rounded-md text-base font-medium bg-brand-600 text-white hover:bg-brand-700">Contact Us</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+        
+        <!-- ========================================== -->
+        <!-- HOME PAGE -->
+        <!-- ========================================== -->
+        <div id="page-home" class="page-content fade-in block">
+            
+            <!-- Hero Section -->
+            <section class="relative bg-slate-950 text-white overflow-hidden">
+                <!-- Abstract Background Elements -->
+                <div class="absolute inset-0 opacity-20">
+                    <svg class="absolute left-0 top-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <polygon fill="currentColor" class="text-brand-900" points="0,100 100,0 100,100"/>
+                    </svg>
+                </div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                    <div class="md:w-2/3">
+                        <div class="inline-flex items-center px-3 py-1 rounded-full bg-brand-900/50 border border-brand-500/30 text-brand-100 text-sm font-medium mb-6">
+                            <span class="flex w-2 h-2 rounded-full bg-brand-500 mr-2 animate-pulse"></span>
+                            Engineering the Future
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                            Innovative Solutions & <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-cyan-300">Precision Fabrication</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed">
+                            Bakerdynamics operates at the intersection of modern engineering and digital craftsmanship. From conceptual design to physical reality, we bring your ideas to life.
+                        </p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <button onclick="navigate('printforge')" class="bg-brand-600 hover:bg-brand-500 text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-lg shadow-brand-600/30 flex justify-center items-center group">
+                                Explore PrintForge
+                                <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
+                            <button class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-3.5 rounded-lg font-semibold transition-all backdrop-blur-sm">
+                                Our Services
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Overview -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Core Capabilities</h2>
+                        <div class="w-20 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                        <p class="text-slate-600 text-lg">Delivering high-quality engineering services across multiple disciplines.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <!-- Card 1 -->
+                        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="w-14 h-14 bg-brand-100 rounded-xl flex items-center justify-center mb-6 text-brand-600">
+                                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Technical Design</h3>
+                            <p class="text-slate-600 leading-relaxed">Advanced CAD modeling and system architecture designed for modern technological demands.</p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+                            <div class="w-14 h-14 bg-brand-100 rounded-xl flex items-center justify-center mb-6 text-brand-600">
+                                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">PrintForge Fabrication</h3>
+                            <p class="text-slate-600 leading-relaxed">State-of-the-art 3D printing, rapid prototyping, and custom parts manufacturing for any scale.</p>
+                            <button onclick="navigate('printforge')" class="mt-4 text-brand-600 font-semibold hover:text-brand-800 flex items-center text-sm">
+                                Learn more 
+                                <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="w-14 h-14 bg-brand-100 rounded-xl flex items-center justify-center mb-6 text-brand-600">
+                                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Dynamic Consulting</h3>
+                            <p class="text-slate-600 leading-relaxed">Expert advisory services to streamline your operations and bring products to market faster.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section (Personalized) -->
+            <section class="py-20 bg-slate-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col md:flex-row">
+                        <div class="md:w-1/2 p-10 lg:p-16 flex flex-col justify-center">
+                            <div class="text-brand-600 font-semibold tracking-wider uppercase text-sm mb-2">About Us</div>
+                            <h2 class="text-3xl font-bold text-slate-900 mb-6">A Family-Driven Approach to Modern Solutions</h2>
+                            <p class="text-slate-600 mb-6 leading-relaxed">
+                                At Bakerdynamics, we believe that the best professional work is rooted in strong personal values. Founded on principles of dedication, integrity, and precision, we approach every project with the care and attention it deserves.
+                            </p>
+                            <p class="text-slate-600 leading-relaxed border-l-4 border-brand-500 pl-4 italic bg-slate-50 py-3 rounded-r-lg">
+                                "Our commitment to excellence drives us to build a future that is structurally sound, endlessly innovative, and designed to stand the test of time."
+                            </p>
+                        </div>
+                        <div class="md:w-1/2 bg-slate-800 relative min-h-[300px]">
+                            <!-- Placeholder for a professional or family/workspace image -->
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Engineering Workspace" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-brand-900/80 to-transparent"></div>
+                            <div class="absolute bottom-8 left-8 right-8 text-white">
+                                <p class="font-semibold text-xl">Building for tomorrow.</p>
+                                <p class="text-brand-200 text-sm mt-1">Bakerdynamics.io</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PRINTFORGE PAGE -->
+        <!-- ========================================== -->
+        <div id="page-printforge" class="page-content fade-in hidden">
+            
+            <!-- PrintForge Hero -->
+            <section class="relative bg-slate-900 text-white overflow-hidden py-24">
+                <div class="absolute inset-0">
+                    <!-- Subtle grid pattern -->
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                </div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-brand-500/20 rounded-2xl border border-brand-500/50 mb-8 backdrop-blur-sm">
+                        <svg class="w-10 h-10 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+                        Welcome to <span class="text-brand-500">PrintForge</span>
+                    </h1>
+                    <p class="text-xl text-slate-300 max-w-2xl mx-auto mb-10">
+                        The dedicated rapid prototyping and advanced 3D manufacturing division of Bakerdynamics.
+                    </p>
+                    <button class="bg-white text-slate-900 hover:bg-slate-100 px-8 py-3.5 rounded-lg font-semibold transition-all shadow-lg">
+                        Shop Collection
+                    </button>
+                </div>
+            </section>
+
+            <!-- Product Grid Section -->
+            <section class="py-20 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Featured Products</h2>
+                        <div class="w-20 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                        <p class="text-slate-600 text-lg">High-quality, precision-engineered 3D printed parts and accessories available for direct purchase.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        
+                        <!-- Product Card 1 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col">
+                            <div class="bg-slate-200 relative overflow-hidden h-64 sm:h-72">
+                                <!-- Swap src with your actual product image -->
+                                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=80" alt="Product Name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-900 shadow-sm">
+                                    In Stock
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Custom Fabrication Jig</h3>
+                                <p class="text-slate-600 mb-6 text-sm flex-grow">High-strength PETG jig designed for rapid assembly line alignment and consistent part spacing.</p>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <span class="text-xl font-bold text-brand-600">$45.00</span>
+                                    <button class="bg-slate-900 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col">
+                            <div class="bg-slate-200 relative overflow-hidden h-64 sm:h-72">
+                                <img src="https://images.unsplash.com/photo-1620645657512-bc78b3cb365b?auto=format&fit=crop&w=600&q=80" alt="Product Name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Mechanical Gear Set</h3>
+                                <p class="text-slate-600 mb-6 text-sm flex-grow">Precision-printed ABS gear replacement set for heavy-duty torque applications.</p>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <span class="text-xl font-bold text-brand-600">$28.50</span>
+                                    <button class="bg-slate-900 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col">
+                            <div class="bg-slate-200 relative overflow-hidden h-64 sm:h-72">
+                                <div class="absolute top-4 right-4 bg-brand-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                                    Bestseller
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1631541909164-84518420e1d5?auto=format&fit=crop&w=600&q=80" alt="Product Name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Structural Bracket Pro</h3>
+                                <p class="text-slate-600 mb-6 text-sm flex-grow">Lightweight but incredibly strong carbon-fiber infused bracket for structural mounting.</p>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <span class="text-xl font-bold text-brand-600">$15.00</span>
+                                    <button class="bg-slate-900 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 4 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col">
+                            <div class="bg-slate-200 relative overflow-hidden h-64 sm:h-72">
+                                <img src="https://images.unsplash.com/photo-1572863140134-972161e1fa67?auto=format&fit=crop&w=600&q=80" alt="Product Name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">TPU Dampener Kit</h3>
+                                <p class="text-slate-600 mb-6 text-sm flex-grow">Flexible TPU vibration dampeners designed to reduce mechanical resonance.</p>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <span class="text-xl font-bold text-brand-600">$22.00</span>
+                                    <button class="bg-slate-900 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product Card 5 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col">
+                            <div class="bg-slate-200 relative overflow-hidden h-64 sm:h-72">
+                                <img src="https://images.unsplash.com/photo-1614315582855-32e578da62a5?auto=format&fit=crop&w=600&q=80" alt="Product Name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Custom Tool Organizer</h3>
+                                <p class="text-slate-600 mb-6 text-sm flex-grow">Modular workspace organizer printed in durable PLA. Fits standard pegboards.</p>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <span class="text-xl font-bold text-brand-600">$35.00</span>
+                                    <button class="bg-slate-900 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 6 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col">
+                            <div class="bg-slate-200 relative overflow-hidden h-64 sm:h-72">
+                                <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80" alt="Product Name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Proto-Enclosure Box</h3>
+                                <p class="text-slate-600 mb-6 text-sm flex-grow">Water-resistant electronics enclosure for rapid prototyping and outdoor testing.</p>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <span class="text-xl font-bold text-brand-600">$18.50</span>
+                                    <button class="bg-slate-900 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+        
     </main>
 
-    <footer>
-        <p>&copy; 2026 Baker Dynamics. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="Logo.png" alt="Bakerdynamics Logo" class="h-8 w-auto mr-3">
+                        <span class="font-bold text-xl text-white">Baker<span class="text-brand-500">dynamics</span></span>
+                    </div>
+                    <p class="text-sm mb-4">Innovating the future of design and fabrication. Proudly family-owned and operated.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><button onclick="navigate('home')" class="hover:text-brand-400 transition-colors">Home</button></li>
+                        <li><button onclick="navigate('printforge')" class="hover:text-brand-400 transition-colors">PrintForge</button></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>hello@bakerdynamics.io</li>
+                        <!-- Add actual contact info if needed -->
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-12 pt-8 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 Bakerdynamics. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <!-- JavaScript for Navigation -->
+    <script>
+        // Simple client-side routing logic
+        function navigate(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+            
+            // Show target page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                targetPage.classList.add('block');
+            }
+
+            // Update nav styling
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-brand-600', 'font-bold');
+                btn.classList.add('text-slate-600');
+            });
+
+            const activeBtn = document.getElementById('nav-' + pageId);
+            if(activeBtn) {
+                activeBtn.classList.add('text-brand-600', 'font-bold');
+                activeBtn.classList.remove('text-slate-600');
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+        // Initialize to home page styling
+        navigate('home');
+    </script>
 </body>
 </html>

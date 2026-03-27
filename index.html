@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bakerdynamics | Innovation & Fabrication</title>
+    <title>Bakerdynamics | Innovation, Fabrication & Support</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom config for brand colors -->
@@ -64,6 +64,225 @@
 <body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
 
     <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center cursor-pointer" onclick="navigate('home')">
+                    <!-- Logo -->
+                    <img src="Logo.png" alt="Bakerdynamics Logo" class="h-10 w-auto mr-3">
+                    <span class="font-bold text-2xl tracking-tight text-slate-900">Baker<span class="text-brand-600">dynamics</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <button onclick="navigate('home')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors" id="nav-home">Home</button>
+                    <button onclick="navigate('printforge')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors" id="nav-printforge">PrintForge</button>
+                    <button onclick="navigate('mentorship')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors" id="nav-mentorship">Mentorship</button>
+                    <button onclick="navigate('support')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors" id="nav-support">IT Support</button>
+                    <button onclick="navigate('contact')" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg font-medium transition-all shadow-md shadow-brand-500/30">Contact Us</button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg z-40">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <button onclick="navigate('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Home</button>
+                <button onclick="navigate('printforge'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PrintForge</button>
+                <button onclick="navigate('mentorship'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Mentorship</button>
+                <button onclick="navigate('support'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">IT Support</button>
+                <button onclick="navigate('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 mt-4 rounded-md text-base font-medium bg-brand-600 text-white hover:bg-brand-700">Contact Us</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+        
+        <!-- ========================================== -->
+        <!-- HOME PAGE -->
+        <!-- ========================================== -->
+        <div id="page-home" class="page-content fade-in block">
+            
+            <!-- Hero Section -->
+            <section class="relative bg-slate-950 text-white overflow-hidden">
+                <div class="absolute inset-0 opacity-20">
+                    <svg class="absolute left-0 top-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <polygon fill="currentColor" class="text-brand-900" points="0,100 100,0 100,100"/>
+                    </svg>
+                </div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                    <div class="md:w-2/3">
+                        <div class="inline-flex items-center px-3 py-1 rounded-full bg-brand-900/50 border border-brand-500/30 text-brand-100 text-sm font-medium mb-6">
+                            <span class="flex w-2 h-2 rounded-full bg-brand-500 mr-2 animate-pulse"></span>
+                            Technology & Solutions
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                            Engineering the Future <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-cyan-300">Empowering People</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed">
+                            Bakerdynamics operates at the intersection of digital craftsmanship, professional mentorship, and reliable IT solutions. From conceptual design to system stability, we build what works.
+                        </p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <button onclick="navigate('printforge')" class="bg-brand-600 hover:bg-brand-500 text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-lg shadow-brand-600/30 flex justify-center items-center group">
+                                Shop PrintForge
+                                <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
+                            <button onclick="navigate('contact')" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-3.5 rounded-lg font-semibold transition-all backdrop-blur-sm">
+                                Get in Touch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Overview -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Our Divisions</h2>
+                        <div class="w-20 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                        <p class="text-slate-600 text-lg">Delivering high-quality services across three specialized technological disciplines.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <!-- PrintForge Card -->
+                        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col">
+                            <div class="w-14 h-14 bg-brand-100 rounded-xl flex items-center justify-center mb-6 text-brand-600">
+                                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">PrintForge</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6 flex-grow">State-of-the-art 3D printing, rapid prototyping, and custom parts manufacturing. Shop our catalog of precision-engineered products.</p>
+                            <button onclick="navigate('printforge')" class="mt-auto bg-slate-900 hover:bg-brand-600 text-white w-full py-2.5 rounded-lg font-medium transition-colors">
+                                View Products
+                            </button>
+                        </div>
+
+                        <!-- Mentorship Card -->
+                        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="w-14 h-14 bg-brand-100 rounded-xl flex items-center justify-center mb-6 text-brand-600">
+                                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Mentorship</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6 flex-grow">Professional coaching and career development. We help bridge the gap between technical knowledge and practical application.</p>
+                            <button onclick="navigate('mentorship')" class="mt-auto bg-slate-900 hover:bg-brand-600 text-white w-full py-2.5 rounded-lg font-medium transition-colors">
+                                Learn More
+                            </button>
+                        </div>
+
+                        <!-- Computer Support Card -->
+                        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="w-14 h-14 bg-brand-100 rounded-xl flex items-center justify-center mb-6 text-brand-600">
+                                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">IT & Computer Support</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6 flex-grow">Reliable diagnostics, hardware repair, software troubleshooting, and network setup to keep your systems running smoothly.</p>
+                            <button onclick="navigate('support')" class="mt-auto bg-slate-900 hover:bg-brand-600 text-white w-full py-2.5 rounded-lg font-medium transition-colors">
+                                Get Support
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="py-20 bg-slate-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col md:flex-row">
+                        <div class="md:w-1/2 p-10 lg:p-16 flex flex-col justify-center">
+                            <div class="text-brand-600 font-semibold tracking-wider uppercase text-sm mb-2">About Us</div>
+                            <h2 class="text-3xl font-bold text-slate-900 mb-6">A Family-Driven Approach to Modern Solutions</h2>
+                            <p class="text-slate-600 mb-6 leading-relaxed">
+                                At Bakerdynamics, we believe that the best professional work is rooted in strong personal values. Founded on principles of dedication, integrity, and precision, we approach every project with the care and attention it deserves.
+                            </p>
+                            <p class="text-slate-600 leading-relaxed border-l-4 border-brand-500 pl-4 italic bg-slate-50 py-3 rounded-r-lg">
+                                "Our commitment to excellence drives us to build a future that is structurally sound, endlessly innovative, and designed to stand the test of time."
+                            </p>
+                        </div>
+                        <div class="md:w-1/2 bg-slate-800 relative min-h-[300px]">
+                            <!-- Placeholder image -->
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Engineering Workspace" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-brand-900/80 to-transparent"></div>
+                            <div class="absolute bottom-8 left-8 right-8 text-white">
+                                <p class="font-semibold text-xl">Building for tomorrow.</p>
+                                <p class="text-brand-200 text-sm mt-1">Bakerdynamics.io</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PRINTFORGE PAGE -->
+        <!-- ========================================== -->
+        <div id="page-printforge" class="page-content fade-in hidden">
+            <!-- PrintForge Hero -->
+            <section class="relative bg-slate-900 text-white overflow-hidden py-20">
+                <div class="absolute inset-0">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                </div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+                        <span class="text-brand-500">PrintForge</span> Shop
+                    </h1>
+                    <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+                        High-quality, precision-engineered 3D printed parts and accessories.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Product Grid Section -->
+            <section class="py-16 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        
+                        <!-- Product Card 1 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col">
+                            <div class="bg-slate-200 relative overflow-hidden h-64 sm:h-72">
+                                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=80" alt="Product Name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-900 shadow-sm">In Stock</div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Custom Fabrication Jig</h3>
+                                <p class="text-slate-600 mb-6 text-sm flex-grow">High-strength PETG jig designed for rapid assembly line alignment and consistent part spacing.</p>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <span class="text-xl font-bold text-brand-600">$45.00</span>
+                                    <button class="bg-slate-900 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col">
+                            <div class="bg-slate-200 relative overflow-hidden h-64 sm:h-72">
+                                <img src="https://images.unsplash.com/photo-1620645657512-bc78b3cb365b?auto=format&fit=crop&w=600&q=80" alt="Product Name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">Mechanical Gear Set</h3>
+                                <p class="text-slate-600 mb-6 text-sm flex-grow">Precision-printed ABS gear replacement set for heavy-duty torque applications.</p>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <span class="text-xl font-bold text-brand-600">$28.50</span>
+                                      <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">

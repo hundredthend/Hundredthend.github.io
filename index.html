@@ -67,19 +67,19 @@
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
-                <div class="flex items-center cursor-pointer" onclick="navigate('home')">
+                <a href="#home" class="flex items-center cursor-pointer">
                     <!-- Logo -->
                     <img src="Logo.png" alt="Bakerdynamics Logo" class="h-10 w-auto mr-3">
                     <span class="font-bold text-2xl tracking-tight text-slate-900">Baker<span class="text-brand-600">dynamics</span></span>
-                </div>
+                </a>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                    <button onclick="navigate('home')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors" id="nav-home">Home</button>
-                    <button onclick="navigate('printforge')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors" id="nav-printforge">PrintForge</button>
-                    <button onclick="navigate('mentorship')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors" id="nav-mentorship">Mentorship</button>
-                    <button onclick="navigate('support')" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors" id="nav-support">IT Support</button>
-                    <button onclick="navigate('contact')" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg font-medium transition-all shadow-md shadow-brand-500/30">Contact Us</button>
+                    <a href="#home" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors">Home</a>
+                    <a href="#printforge" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors">PrintForge</a>
+                    <a href="#mentorship" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors">Mentorship</a>
+                    <a href="#support" class="nav-btn text-slate-600 hover:text-brand-600 font-medium transition-colors">IT Support</a>
+                    <a href="#contact" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg font-medium transition-all shadow-md shadow-brand-500/30">Contact Us</a>
                 </div>
 
                 <!-- Mobile menu button -->
@@ -96,11 +96,11 @@
         <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg z-40">
             <div class="px-4 pt-2 pb-4 space-y-1">
-                <button onclick="navigate('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Home</button>
-                <button onclick="navigate('printforge'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PrintForge</button>
-                <button onclick="navigate('mentorship'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Mentorship</button>
-                <button onclick="navigate('support'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">IT Support</button>
-                <button onclick="navigate('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 mt-4 rounded-md text-base font-medium bg-brand-600 text-white hover:bg-brand-700">Contact Us</button>
+                <a href="#home" class="mobile-link block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Home</a>
+                <a href="#printforge" class="mobile-link block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PrintForge</a>
+                <a href="#mentorship" class="mobile-link block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Mentorship</a>
+                <a href="#support" class="mobile-link block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">IT Support</a>
+                <a href="#contact" class="mobile-link block w-full text-left px-3 py-3 mt-4 rounded-md text-base font-medium bg-brand-600 text-white hover:bg-brand-700">Contact Us</a>
             </div>
         </div>
     </nav>
@@ -113,7 +113,6 @@
         <!-- ========================================== -->
         <div id="page-home" class="page-content fade-in block">
             
-            <!-- Hero Section -->
             <section class="relative bg-slate-950 text-white overflow-hidden">
                 <div class="absolute inset-0 opacity-20">
                     <svg class="absolute left-0 top-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -135,15 +134,15 @@
                             Bakerdynamics operates at the intersection of digital craftsmanship, professional mentorship, and reliable IT solutions. From conceptual design to system stability, we build what works.
                         </p>
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                            <button onclick="navigate('printforge')" class="bg-brand-600 hover:bg-brand-500 text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-lg shadow-brand-600/30 flex justify-center items-center group">
+                            <a href="#printforge" class="bg-brand-600 hover:bg-brand-500 text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-lg shadow-brand-600/30 flex justify-center items-center group">
                                 Shop PrintForge
                                 <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
-                            </button>
-                            <button onclick="navigate('contact')" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-3.5 rounded-lg font-semibold transition-all backdrop-blur-sm">
+                            </a>
+                            <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-3.5 rounded-lg font-semibold transition-all backdrop-blur-sm flex justify-center items-center">
                                 Get in Touch
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -168,9 +167,9 @@
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-3">PrintForge</h3>
                             <p class="text-slate-600 leading-relaxed mb-6 flex-grow">State-of-the-art 3D printing, rapid prototyping, and custom parts manufacturing. Shop our catalog of precision-engineered products.</p>
-                            <button onclick="navigate('printforge')" class="mt-auto bg-slate-900 hover:bg-brand-600 text-white w-full py-2.5 rounded-lg font-medium transition-colors">
+                            <a href="#printforge" class="mt-auto bg-slate-900 hover:bg-brand-600 text-white w-full py-2.5 rounded-lg font-medium transition-colors text-center block">
                                 View Products
-                            </button>
+                            </a>
                         </div>
 
                         <!-- Mentorship Card -->
@@ -182,9 +181,9 @@
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-3">Mentorship</h3>
                             <p class="text-slate-600 leading-relaxed mb-6 flex-grow">Professional coaching and career development. We help bridge the gap between technical knowledge and practical application.</p>
-                            <button onclick="navigate('mentorship')" class="mt-auto bg-slate-900 hover:bg-brand-600 text-white w-full py-2.5 rounded-lg font-medium transition-colors">
+                            <a href="#mentorship" class="mt-auto bg-slate-900 hover:bg-brand-600 text-white w-full py-2.5 rounded-lg font-medium transition-colors text-center block">
                                 Learn More
-                            </button>
+                            </a>
                         </div>
 
                         <!-- Computer Support Card -->
@@ -196,9 +195,9 @@
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-3">IT & Computer Support</h3>
                             <p class="text-slate-600 leading-relaxed mb-6 flex-grow">Reliable diagnostics, hardware repair, software troubleshooting, and network setup to keep your systems running smoothly.</p>
-                            <button onclick="navigate('support')" class="mt-auto bg-slate-900 hover:bg-brand-600 text-white w-full py-2.5 rounded-lg font-medium transition-colors">
+                            <a href="#support" class="mt-auto bg-slate-900 hover:bg-brand-600 text-white w-full py-2.5 rounded-lg font-medium transition-colors text-center block">
                                 Get Support
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -325,9 +324,9 @@
                             <p class="text-xl text-slate-600 mb-8 leading-relaxed">
                                 Whether you're looking to break into the tech industry, refine your engineering skills, or start your own fabrication journey, we offer 1-on-1 guidance to help you succeed.
                             </p>
-                            <button onclick="navigate('contact')" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-md">
+                            <a href="#contact" class="inline-block bg-brand-600 hover:bg-brand-700 text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-md">
                                 Apply for Mentorship
-                            </button>
+                            </a>
                         </div>
                         <div class="md:w-1/2">
                             <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Mentorship Session" class="rounded-2xl shadow-xl">
@@ -378,9 +377,9 @@
                     <p class="text-xl text-slate-300 max-w-2xl mx-auto mb-10">
                         Fast, professional solutions for your hardware and software issues. We get your systems back online so you can get back to work.
                     </p>
-                    <button onclick="navigate('contact')" class="bg-brand-600 hover:bg-brand-500 text-white px-8 py-3.5 rounded-lg font-semibold transition-all">
+                    <a href="#contact" class="inline-block bg-brand-600 hover:bg-brand-500 text-white px-8 py-3.5 rounded-lg font-semibold transition-all">
                         Request a Service Call
-                    </button>
+                    </a>
                 </div>
             </section>
 
@@ -461,7 +460,6 @@
                         </div>
 
                         <!-- Contact Form Panel -->
-                        <!-- IMPORTANT: Replace the 'action' URL below with your own Formspree endpoint -->
                         <div class="lg:w-3/5 p-10">
                             <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" class="space-y-6">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -516,16 +514,16 @@
                 <div>
                     <h4 class="text-white font-bold mb-4">Divisions</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><button onclick="navigate('printforge')" class="hover:text-brand-400 transition-colors">PrintForge Shop</button></li>
-                        <li><button onclick="navigate('mentorship')" class="hover:text-brand-400 transition-colors">Mentorship Program</button></li>
-                        <li><button onclick="navigate('support')" class="hover:text-brand-400 transition-colors">IT Support</button></li>
+                        <li><a href="#printforge" class="hover:text-brand-400 transition-colors">PrintForge Shop</a></li>
+                        <li><a href="#mentorship" class="hover:text-brand-400 transition-colors">Mentorship Program</a></li>
+                        <li><a href="#support" class="hover:text-brand-400 transition-colors">IT Support</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-4">Company</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><button onclick="navigate('home')" class="hover:text-brand-400 transition-colors">Home / About</button></li>
-                        <li><button onclick="navigate('contact')" class="hover:text-brand-400 transition-colors">Contact Us</button></li>
+                        <li><a href="#home" class="hover:text-brand-400 transition-colors">Home / About</a></li>
+                        <li><a href="#contact" class="hover:text-brand-400 transition-colors">Contact Us</a></li>
                         <li>hello@bakerdynamics.io</li>
                     </ul>
                 </div>
@@ -536,49 +534,69 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Navigation -->
+    <!-- JavaScript for Hash Routing -->
     <script>
-        // Simple client-side routing logic
-        function navigate(pageId) {
+        function handleRouting() {
+            // Get the hash from the URL (e.g., "#contact"). Default to '#home' if empty.
+            let hash = window.location.hash.substring(1);
+            if (!hash) hash = 'home';
+
             // Hide all pages
             document.querySelectorAll('.page-content').forEach(el => {
                 el.classList.add('hidden');
                 el.classList.remove('block');
             });
-            
+
             // Show target page
-            const targetPage = document.getElementById('page-' + pageId);
+            const targetPage = document.getElementById('page-' + hash);
             if (targetPage) {
                 targetPage.classList.remove('hidden');
                 targetPage.classList.add('block');
+            } else {
+                // Fallback to home if someone types an invalid hash
+                document.getElementById('page-home').classList.remove('hidden');
+                document.getElementById('page-home').classList.add('block');
+                hash = 'home';
             }
 
-            // Update nav styling
+            // Reset navigation links styling
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('text-brand-600', 'font-bold');
                 btn.classList.add('text-slate-600');
             });
 
-            const activeBtn = document.getElementById('nav-' + pageId);
-            if(activeBtn) {
-                activeBtn.classList.add('text-brand-600', 'font-bold');
-                activeBtn.classList.remove('text-slate-600');
-            }
+            // Highlight the active navigation link
+            document.querySelectorAll(`a[href="#${hash}"]`).forEach(activeBtn => {
+                if(activeBtn.classList.contains('nav-btn')) {
+                    activeBtn.classList.add('text-brand-600', 'font-bold');
+                    activeBtn.classList.remove('text-slate-600');
+                }
+            });
 
-            // Scroll to top
-            window.scrollTo(0, 0);
+            // Scroll to the top of the page smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
+        // Listen for URL changes (fixes the Back/Forward button issue!)
+        window.addEventListener('hashchange', handleRouting);
+        
+        // Run routing logic on initial page load
+        window.addEventListener('load', handleRouting);
 
-        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        // Initialize to home page styling
-        navigate('home');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
     </script>
 </body>
 </html>
